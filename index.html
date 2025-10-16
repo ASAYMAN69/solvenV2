@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" id="favicon" href="favicon.ico" type="image/x-icon">
+<script defer src="favicon-switcher.js"></script>
+<title>Solven.app | Pre-register</title>
+<meta property="og:image" content="solvenlogo.png">
+<meta property="og:title" content="Solven.app | Pre-register">
+<meta property="og:description" content="Solve your problems as an entrepreneur or individual business.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asimovian&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="splash" class="splash" aria-hidden="true"><div class="brand asimovian-regular" style="color: #9112bc;">Solven.app</div></div>
+
+<main class="container" role="main">
+  <section class="hero" aria-labelledby="heroTitle">
+    <h1 id="heroTitle">Welcome to <span class="brand-inline asimovian-regular" style="color: #9112bc;">Solven.app</span></h1>
+    <div class="subtitle">Here we solve your problems you face as an entrepreneur or individual business.</div>
+
+    <div class="cta"><span id="preRegBtn" class="glow-text">Pre-register now</span></div>
+    <div id="formCard" class="form-card" style="margin-top:22px;">
+      <form id="preForm" autocomplete="on">
+        <div class="field"><label for="name">Name</label><input id="name" class="form-control" name="name" type="text" placeholder="Your full name" required></div>
+
+        <div class="field"><label for="country">Country</label>
+          <select id="country" class="form-control" name="country" required>
+            <option value="" disabled selected>Choose a country</option>
+          </select>
+        </div>
+
+        <div class="field"><label for="phone">Phone number</label>
+          <div class="phone-row">
+            <div id="prefix" class="country-prefix">+--</div>
+            <input id="phone" class="form-control" name="phone" type="text" inputmode="tel" placeholder="123-456-7890" required style="flex:1;height:var(--control-height)">
+          </div>
+        </div>
+
+        <div class="field"><label for="role">Role</label>
+          <select id="role" class="form-control" name="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option>Entrepreneur</option>
+            <option>CEO</option>
+            <option>HR</option>
+            <option>Developer</option>
+            <option>Student</option>
+            <option>Others</option>
+          </select>
+          <div id="otherRoleWrap" class="hidden" style="margin-top:8px;"><input id="otherRole" class="form-control" type="text" placeholder="Describe your role (if Others)"></div>
+        </div>
+
+        <div class="field"><label for="email">Email address</label><input id="email" class="form-control" name="email" type="email" placeholder="labib@example.com" required></div>
+
+        <div class="actions" style="display:flex;justify-content:center;margin-top:24px;"><button id="reserveBtn" class="btn" type="submit">Reserve my spot</button></div>
+        <div style="text-align:center; margin-top: 10px;"><a href="https://tools.solven.app" target="_blank" id="uniqueToolsLinkMain" class="text-link">Experience our tools</a></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="overlay1" class="popup-overlay" aria-hidden="true">
+  <div class="popup" role="dialog" aria-modal="true">
+    <div class="tick" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="var(--tick-green)"/><path d="M16 9l-5 6-3-3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <h3 class="lead">Thank you for registering</h3>
+    <p class="sub">Help us by telling your problems</p>
+    <p class="quote">"Let us solve it for you"</p>
+
+    <textarea id="notes" class="notes-area" placeholder="Ex: I am facing troubles with generating invoices. It's taking a lot of money and time..."></textarea>
+    <div class="popup-actions">
+      <div><button id="toolsBtnPopup1" class="btn solve-btn glowing modern-font">Experience our tools</button></div>
+      <div class="right-actions">
+        <button id="skipBtn" class="skip-btn" aria-hidden="true">Skip</button>
+        <button id="solveBtn" class="solve-btn modern-font">Solve for me</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="overlay2" class="popup-overlay" aria-hidden="true">
+  <div class="popup" role="dialog" aria-modal="true" aria-labelledby="p2title">
+    <div class="tick" aria-hidden="true" style="width:96px;height:96px"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#0F7B32"/><path d="M16 9l-5 6-3-3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <h3 id="p2title" style="text-align:center">Thank you!</h3>
+    <p id="p2lead" style="text-align:center;margin-top:6px;margin-bottom:12px;">You will receive an email once our early version releases.</p>
+
+    <div class="social-cards" role="list" aria-label="Team cards">
+      <div class="social-card" role="listitem">
+        <span class="avatar"><img src="https://i.postimg.cc/8c7h742n/Whats-App-Image-2025-09-01-at-20-00-41-b6f60f6a.jpg" alt="Tahmid Hasan Tasin"></span>
+
+        <div class="social-meta">
+          <div class="name">Tahmid Hasan Tasin</div>
+          <p class="sub">AI &amp; Entrepreneurship</p>
+        </div>
+
+        <a class="social-action" href="https://www.linkedin.com/in/tasinmid" target="_blank" rel="noopener noreferrer" aria-label="Tahmid Hasan Tasin on LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11.538 20h-2.923v-9h2.923v9zm-1.462-10.252c-.936 0-1.692-.756-1.692-1.692s.756-1.692 1.692-1.692 1.692.756 1.692 1.692-.757 1.692-1.692 1.692zm13 10.252h-2.923v-4.512c0-1.077-.02-2.462-1.5-2.462-1.5 0-1.732 1.173-1.732 2.387v4.587h-2.923v-9h2.807v1.233h.04c.391-.742 1.344-1.522 2.768-1.522 2.964 0 3.51 1.952 3.51 4.493v5.796z"/></svg>
+        </a>
+      </div>
+
+      <div class="social-card" role="listitem">
+        <span class="avatar"><img src="https://i.postimg.cc/mhWLW2B2/Linked-In-pfp-1x1.jpg" alt="AS Ayman"></span>
+
+        <div class="social-meta">
+          <div class="name">AS Ayman</div>
+          <p class="sub">Development & AI<br>Automation</p>
+        </div>
+
+        <a class="social-action" href="https://www.linkedin.com/in/asayman" target="_blank" rel="noopener noreferrer" aria-label="AS Ayman on LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11.538 20h-2.923v-9h2.923v9zm-1.462-10.252c-.936 0-1.692-.756-1.692-1.692s.756-1.692 1.692-1.692 1.692.756 1.692 1.692-.757 1.692-1.692 1.692zm13 10.252h-2.923v-4.512c0-1.077-.02-2.462-1.5-2.462-1.5 0-1.732 1.173-1.732 2.387v4.587h-2.923v-9h2.807v1.233h.04c.391-.742 1.344-1.522 2.768-1.522 2.964 0 3.51 1.952 3.51 4.493v5.796z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <p id="p2text" style="text-align:center;margin-top:6px;">Thank you for your <strong id="emph1" style="color:var(--accent-purple);font-weight:800">attention</strong>, a valuable <strong id="emph2" style="color:var(--accent-purple);font-weight:800">asset</strong>.</p>
+
+    <div class="final-close-wrap">
+      <button id="toolsBtnPopup2" class="btn solve-btn glowing modern-font" aria-label="Experience our tools">Experience our tools</button>
+    </div>
+
+  </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

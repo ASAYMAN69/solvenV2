@@ -1,0 +1,55 @@
+:root{
+    --deep-purple: #2E073F;
+    --primary-purple: #7A1CAC;
+    --accent-purple: #AD49E1;
+    --pastel: #EBD3F8;
+    --white: #ffffff;
+    --muted: #cfcfda;
+    --tick-green: #24a148;
+    --card-radius: 14px;
+    --control-height: 52px;
+    --control-radius: 10px;
+    --control-padding-x: 14px;
+    --control-bg: rgba(255,255,255,0.02);
+    --control-border: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  html {
+    height: 100%;
+    margin: 0;
+    background-color: var(--deep-purple);
+  }
+  body {
+    min-height: 100%;
+    margin: 0;
+    font-family: Inter,system-ui,Segoe UI,Roboto,Arial;
+    background: linear-gradient(180deg,var(--deep-purple) 0%, #23042e 120%);
+    color: var(--white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 24px 24px;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  input:focus,select:focus,textarea:focus,button:focus{outline:2px solid rgba(173,73,225,0.12)}
+  .hidden{display:none!important}
+
+.asimovian-regular {
+  font-family: "Asimovian", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1.5pt;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.brand, .brand-inline {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove tap highlight on mobile */
+button, a, input, select, textarea {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

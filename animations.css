@@ -1,0 +1,35 @@
+.splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(46,7,63,0.95), rgba(18,6,30,0.85));backdrop-filter:blur(6px);z-index:9999;pointer-events:none;opacity:0;visibility:hidden;}
+  .splash.show{opacity:1;visibility:visible}
+  .brand{font-weight:800;font-size:48px;color:var(--accent-purple);text-shadow:0 8px 36px rgba(173,73,225,0.28);transform:translateY(8px);opacity:0;}
+  @keyframes fadeInUp { from { opacity:0; transform: translateY(12px) scale(.995); } to { opacity:1; transform:none; } }
+  @keyframes fadeOutUp { from { opacity:1; transform:none; } to { opacity:0; transform: translateY(-12px) scale(.995); } }
+  .splash.show .brand { animation: fadeInUp .48s cubic-bezier(.2,.9,.2,1) forwards; }
+  .splash.hide .brand { animation: fadeOutUp .42s cubic-bezier(.2,.9,.2,1) forwards; }
+  .splash.hide { opacity:0; transition: opacity .42s ease, visibility 0s .42s; visibility: hidden; }
+  .glow-text {
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 5px #AD49E1,
+    0 0 10px #AD49E1,
+    0 0 20px #7A1CAC,
+    0 0 30px #7A1CAC,
+    0 0 40px #AD49E1,
+    0 0 55px #AD49E1,
+    0 0 75px #AD49E1;
+}
+
+.glowing { /* Apply to any element with the glowing class */
+  animation: pulseGlow 1.8s infinite alternate;
+}
+@keyframes pulseGlow {
+  from {
+    box-shadow: 0 0 20px 3px rgba(173, 73, 225, 0.6);
+  }
+  to {
+    box-shadow: 0 0 40px 8px rgba(173, 73, 225, 0.8);
+  }
+}

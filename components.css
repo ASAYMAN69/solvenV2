@@ -151,4 +151,9 @@ body:not(.has-touch) #solveBtn:hover::after {
   font-family: 'Montserrat', sans-serif;
 }
 
+.brand, .brand-inline {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 

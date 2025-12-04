@@ -165,7 +165,7 @@ function gatherFormData(){
 }
 
 // --- Event Handlers ---
-async function handleSubmit(ev){
+function handleSubmit(ev){
   ev.preventDefault();
   console.log('handleSubmit called');
 
@@ -205,7 +205,7 @@ async function handleSubmit(ev){
 
   console.log('Validation passed. Sending leads request...');
   const bodyObj = gatherFormData();
-  await sendLeadsRequest(bodyObj);
+  sendLeadsRequest(bodyObj);
   console.log('Leads request sent. Opening popup1...');
   openPopup1();
   console.log('openPopup1 called.');
@@ -217,7 +217,7 @@ function onSkip(e){
   showFinalPopup(false);
 }
 
-async function onSolveClicked(e){
+function onSolveClicked(e){
   e.preventDefault();
   if(elements.solveBtn.disabled) return;
 
@@ -226,6 +226,6 @@ async function onSolveClicked(e){
   const formData = gatherFormData();
   if(!formData.email){ alert('Email not found, cannot submit notes.'); return; }
 
-  await sendNotesRequest(formData.email, elements.notesEl.value.trim());
+  sendNotesRequest(formData.email, elements.notesEl.value.trim());
   showFinalPopup(true);
 }

@@ -14,3 +14,11 @@
 - Refactored the `.hidden` class in `base-styles.css` to enable smooth transitions using `opacity` and `max-height`.
 - Introduced a new `.visually-hidden` class in `base-styles.css` for elements that should be completely hidden without transition.
 - Updated `index.html` to use the `.visually-hidden` class for the `otherRoleWrap` element.
+- Replaced default `<select>` elements with custom HTML structures for country and role dropdowns in `index.html`.
+- Added comprehensive CSS styling for custom dropdowns in `components.css`.
+- Implemented JavaScript logic for custom dropdown functionality, including toggling, option selection, outside clicks, and keyboard navigation in `main.js`.
+- Modified `populateCountries` and added `populateRoles` functions in `main.js` to populate custom dropdowns.
+- Updated `DOMContentLoaded` and `setupEventListeners` in `main.js` to integrate custom dropdowns.
+- Ensured accessibility for custom dropdowns by adding appropriate ARIA attributes in `main.js`.
+- Applied glassy background effect to custom dropdown elements in `components.css`.
+- Added custom scrollbar styling to the `.select-items` class in `components.css`.

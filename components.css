@@ -151,6 +151,101 @@ body:not(.has-touch) #solveBtn:hover::after {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* Custom Select Styles */
+.custom-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 14px; /* Matches field margin-bottom */
+}
+
+.select-selected {
+  background-color: rgba(255,255,255,0.06); /* Slightly more opaque for glassy base */
+  backdrop-filter: blur(8px); /* Apply blur directly to the selected element */
+  border: 1px solid var(--control-border);
+  height: var(--control-height);
+  border-radius: var(--control-radius);
+  padding: 0 var(--control-padding-x);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  font-size: 15px;
+  position: relative;
+  user-select: none;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: var(--control-padding-x);
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: var(--white) transparent transparent transparent;
+  transform: translateY(-50%);
+}
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent var(--white) transparent;
+  top: calc(50% - 3px);
+}
+
+.select-items {
+  position: absolute;
+  background-color: rgba(255,255,255,0.08); /* Glassy background for dropdown items */
+  backdrop-filter: blur(12px); /* Stronger blur for the dropdown list */
+  border: 1px solid var(--control-border);
+  border-radius: var(--control-radius);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  max-height: 200px; /* Limit height for scroll */
+  overflow-y: auto;
+  margin-top: 4px;
+  padding: 4px 0;
+  box-shadow: 0 8px 30px rgba(9,7,18,0.6); /* Add some shadow for depth */
+}
+
+.select-items div {
+  padding: 10px var(--control-padding-x);
+  cursor: pointer;
+  color: var(--white);
+  font-size: 15px;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(255, 255, 255, 0.15); /* Slightly brighter hover for glassy effect */
+}
+
+/* Custom Scrollbar for select-items */
+.select-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.select-items::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05); /* Slightly visible track */
+  border-radius: 10px;
+}
+
+.select-items::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2); /* Glassy thumb */
+  border-radius: 10px;
+  border: 2px solid transparent; /* Creates a small padding around the thumb */
+  background-clip: content-box; /* Ensures border doesn't shrink the thumb */
+}
+
+.select-items::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3); /* Slightly brighter thumb on hover */
+}
+
+
+.select-selected.placeholder {
+  color: var(--muted);
+}
+
+
 .brand, .brand-inline {
   user-select: none;
   -webkit-tap-highlight-color: transparent;

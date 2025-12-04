@@ -16,6 +16,8 @@ const elements = {
     otherRoleInput: $('#otherRole'),
     emailInput: $('#email'),
     emailInfo: $('#email-info'),
+    customCountrySelect: $('#customCountrySelect'),
+    customRoleSelect: $('#customRoleSelect'),
     reserveBtn: $('#reserveBtn'),
     uniqueToolsLinkMain: $('#uniqueToolsLinkMain'), // Unique main tools link
     // UI module elements
@@ -37,6 +39,7 @@ const elements = {
 document.addEventListener('DOMContentLoaded', () => {
   uiInit(elements);
   populateCountries();
+  populateRoles(); // Call populateRoles here
   showSplashScreen();
   setupReserveButton();
   setupEventListeners();
@@ -44,7 +47,159 @@ document.addEventListener('DOMContentLoaded', () => {
   watchForTouch(); // Set up touch detection for hover effects
 });
 
+document.addEventListener('click', closeAllSelect);
+
 // --- Functions ---
+
+function createCustomSelect(selectElement, customSelectDiv) {
+  const selectSelectedDiv = customSelectDiv.querySelector('.select-selected');
+  const selectItemsDiv = customSelectDiv.querySelector('.select-items');
+  const originalOptions = selectElement.querySelectorAll('option');
+
+  // Add ARIA attributes
+  selectSelectedDiv.setAttribute('aria-haspopup', 'listbox');
+  selectSelectedDiv.setAttribute('aria-expanded', 'false');
+  selectSelectedDiv.setAttribute('role', 'combobox');
+  selectSelectedDiv.setAttribute('tabindex', '0');
+  selectItemsDiv.setAttribute('role', 'listbox');
+
+  // Set initial selected value
+  const initialSelectedOption = originalOptions[selectElement.selectedIndex];
+  if (initialSelectedOption && initialSelectedOption.value !== "") {
+    selectSelectedDiv.innerHTML = initialSelectedOption.innerHTML;
+    selectSelectedDiv.classList.remove('placeholder');
+  } else {
+    selectSelectedDiv.innerHTML = originalOptions[0].innerHTML; // "Choose a country" or "Select your role"
+    selectSelectedDiv.classList.add('placeholder');
+  }
+
+  // Clear existing custom items (if repopulating)
+  selectItemsDiv.innerHTML = '';
+
+  // Create custom options
+  for (let i = 0; i < originalOptions.length; i++) {
+    const option = originalOptions[i];
+    const itemDiv = document.createElement('div');
+    itemDiv.innerHTML = option.innerHTML;
+    itemDiv.setAttribute('data-value', option.value);
+    itemDiv.setAttribute('role', 'option');
+    itemDiv.setAttribute('tabindex', '-1'); // Not focusable by default
+
+    if (option.selected) {
+      itemDiv.classList.add('same-as-selected');
+      itemDiv.setAttribute('aria-selected', 'true');
+    } else {
+      itemDiv.setAttribute('aria-selected', 'false');
+    }
+
+    // Handle placeholder option (first option)
+    if (i === 0 && option.value === "") { // Assuming first option is placeholder
+      itemDiv.style.display = 'none'; // Hide placeholder in custom list
+    }
+
+    itemDiv.addEventListener('click', function(e) {
+      // Prevent default to avoid form submission if this is part of a form
+      e.preventDefault(); 
+      e.stopPropagation(); // Stop propagation to prevent document click from closing immediately
+
+      const prevSelected = selectItemsDiv.querySelector('.same-as-selected');
+      if (prevSelected) {
+        prevSelected.classList.remove('same-as-selected');
+        prevSelected.setAttribute('aria-selected', 'false');
+      }
+      this.classList.add('same-as-selected');
+      this.setAttribute('aria-selected', 'true');
+
+      selectSelectedDiv.innerHTML = this.innerHTML;
+      selectSelectedDiv.classList.remove('placeholder');
+
+      // Update the original select box
+      selectElement.value = this.getAttribute('data-value');
+      selectElement.dispatchEvent(new Event('change', { bubbles: true })); // Trigger change event, allow it to bubble
+
+      closeAllSelect();
+      selectSelectedDiv.focus(); // Return focus to the selected div
+    });
+    selectItemsDiv.appendChild(itemDiv);
+  }
+
+  selectSelectedDiv.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const wasOpen = !selectItemsDiv.classList.contains('visually-hidden');
+    closeAllSelect(selectSelectedDiv); // Pass selectSelectedDiv to keep it open if it was already open
+    
+    if (!wasOpen) {
+      this.classList.toggle('select-arrow-active');
+      selectItemsDiv.classList.toggle('visually-hidden');
+      this.setAttribute('aria-expanded', 'true');
+      selectItemsDiv.focus(); // Focus the dropdown list itself
+    } else {
+      this.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Keyboard navigation for selectSelectedDiv
+  selectSelectedDiv.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); // Prevent scrolling or default action
+      this.click(); // Simulate a click to open the dropdown
+      setTimeout(() => {
+        const firstOption = selectItemsDiv.querySelector('[role="option"]:not([style*="display: none"])');
+        if (firstOption) {
+          firstOption.focus();
+        }
+      }, 0);
+    }
+  });
+
+  // Keyboard navigation for selectItemsDiv (and its children)
+  selectItemsDiv.addEventListener('keydown', function(e) {
+    const options = Array.from(this.querySelectorAll('[role="option"]:not([style*="display: none"])'));
+    if (options.length === 0) return;
+
+    let currentIndex = options.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      currentIndex = (currentIndex + 1) % options.length;
+      options[currentIndex].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      currentIndex = (currentIndex - 1 + options.length) % options.length;
+      options[currentIndex].focus();
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (document.activeElement && document.activeElement.getAttribute('role') === 'option') {
+        document.activeElement.click(); // Simulate click to select
+      }
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      closeAllSelect();
+      selectSelectedDiv.focus();
+    }
+  });
+}
+
+function closeAllSelect(elmnt) {
+  /* A function that will close all select boxes in the document,
+  except the current select box clicked on */
+  const customSelects = document.querySelectorAll('.select-items');
+  const selectSelecteds = document.querySelectorAll('.select-selected');
+  let i, arrNo = [];
+  for (i = 0; i < selectSelecteds.length; i++) {
+    if (elmnt == selectSelecteds[i]) {
+      arrNo.push(i)
+    } else {
+      selectSelecteds[i].classList.remove('select-arrow-active');
+      selectSelecteds[i].setAttribute('aria-expanded', 'false');
+    }
+  }
+  for (i = 0; i < customSelects.length; i++) {
+    if (arrNo.indexOf(i)) {
+      customSelects[i].classList.add('visually-hidden');
+    }
+  }
+}
+
 function populateCountries(){
     // Clear existing options, including the default "Choose a country"
     elements.countrySelect.innerHTML = '<option value="" disabled selected>Choose a country</option>';
@@ -56,6 +211,24 @@ function populateCountries(){
     });
     console.log('Country select element:', elements.countrySelect);
     console.log('Number of options after population:', elements.countrySelect.options.length);
+
+    // Initialize custom select for country
+    createCustomSelect(elements.countrySelect, elements.customCountrySelect);
+}
+
+function populateRoles() {
+  // Clear existing options, including the default "Select your role"
+  elements.roleSelect.innerHTML = `
+    <option value="" disabled selected>Select your role</option>
+    <option>Entrepreneur</option>
+    <option>CEO</option>
+    <option>HR</option>
+    <option>Developer</option>
+    <option>Student</option>
+    <option>Others</option>
+  `;
+  // Initialize custom select for role
+  createCustomSelect(elements.roleSelect, elements.customRoleSelect);
 }
 
 function setupEventListeners(){

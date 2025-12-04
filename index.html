@@ -36,9 +36,13 @@
       </div>
 
         <div class="field"><label for="country">Country</label>
-          <select id="country" class="form-control" name="country" required>
-            <option value="" disabled selected>Choose a country</option>
-          </select>
+          <div id="customCountrySelect" class="custom-select" data-for="country">
+            <select id="country" class="form-control visually-hidden" name="country" required>
+              <option value="" disabled selected>Choose a country</option>
+            </select>
+            <div class="select-selected"></div>
+            <div class="select-items visually-hidden"></div>
+          </div>
         </div>
 
         <div class="field"><label for="phone">Phone number</label>
@@ -49,15 +53,19 @@
         </div>
 
         <div class="field"><label for="role">Role</label>
-          <select id="role" class="form-control" name="role" required>
-            <option value="" disabled selected>Select your role</option>
-            <option>Entrepreneur</option>
-            <option>CEO</option>
-            <option>HR</option>
-            <option>Developer</option>
-            <option>Student</option>
-            <option>Others</option>
-          </select>
+          <div id="customRoleSelect" class="custom-select" data-for="role">
+            <select id="role" class="form-control visually-hidden" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option>Entrepreneur</option>
+              <option>CEO</option>
+              <option>HR</option>
+              <option>Developer</option>
+              <option>Student</option>
+              <option>Others</option>
+            </select>
+            <div class="select-selected"></div>
+            <div class="select-items visually-hidden"></div>
+          </div>
           <div id="otherRoleWrap" class="visually-hidden" style="margin-top:8px;"><input id="otherRole" class="form-control" type="text" placeholder="Describe your role (if Others)"></div>
         </div>
 

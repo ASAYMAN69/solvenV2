@@ -15,6 +15,7 @@ const elements = {
     otherRoleWrap: $('#otherRoleWrap'),
     otherRoleInput: $('#otherRole'),
     emailInput: $('#email'),
+    emailInfo: $('#email-info'),
     reserveBtn: $('#reserveBtn'),
     uniqueToolsLinkMain: $('#uniqueToolsLinkMain'), // Unique main tools link
     // UI module elements
@@ -126,6 +127,10 @@ function setupEventListeners(){
             e.target.setCustomValidity('Please enter a valid email address.'); // Set custom validity if invalid
         }
     });
+
+    elements.emailInput.addEventListener('focus', () => {
+        elements.emailInfo.classList.remove('hidden');
+    }, { once: true });
 
     elements.preForm.addEventListener('submit', handleSubmit);
     elements.skipBtn.addEventListener('click', onSkip);

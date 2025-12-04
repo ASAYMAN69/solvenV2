@@ -28,6 +28,12 @@
     <div id="formCard" class="form-card" style="margin-top:22px;">
       <form id="preForm" autocomplete="on">
         <div class="field"><label for="name">Name</label><input id="name" class="form-control" name="name" type="text" placeholder="Your full name" required></div>
+        <div class="field"><label for="email">Email address</label><input id="email" class="form-control" name="email" type="email" placeholder="labib@example.com" required>
+        <div class="info-tooltip hidden" id="email-info">
+          <span class="info-icon">i</span>
+          <span class="info-message">We notify only this email at launch. Wrong email = missed access</span>
+        </div>
+      </div>
 
         <div class="field"><label for="country">Country</label>
           <select id="country" class="form-control" name="country" required>
@@ -52,10 +58,8 @@
             <option>Student</option>
             <option>Others</option>
           </select>
-          <div id="otherRoleWrap" class="hidden" style="margin-top:8px;"><input id="otherRole" class="form-control" type="text" placeholder="Describe your role (if Others)"></div>
+          <div id="otherRoleWrap" class="visually-hidden" style="margin-top:8px;"><input id="otherRole" class="form-control" type="text" placeholder="Describe your role (if Others)"></div>
         </div>
-
-        <div class="field"><label for="email">Email address</label><input id="email" class="form-control" name="email" type="email" placeholder="labib@example.com" required></div>
 
         <div class="actions" style="display:flex;justify-content:center;margin-top:24px;"><button id="reserveBtn" class="btn" type="submit">Reserve my spot</button></div>
         <div style="text-align:center; margin-top: 10px;"><a href="https://tools.solven.app" target="_blank" id="uniqueToolsLinkMain" class="text-link">Experience our tools</a></div>

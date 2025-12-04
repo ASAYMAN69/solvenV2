@@ -156,4 +156,26 @@ body:not(.has-touch) #solveBtn:hover::after {
   -webkit-tap-highlight-color: transparent;
 }
 
+.info-tooltip {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.info-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--accent-purple);
+  color: var(--white);
+  text-align: center;
+  line-height: 16px;
+  font-weight: bold;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
 

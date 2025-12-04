@@ -33,7 +33,22 @@
     -webkit-font-smoothing: antialiased;
   }
   input:focus,select:focus,textarea:focus,button:focus{outline:2px solid rgba(173,73,225,0.12)}
-  .hidden{display:none!important}
+  /* For elements that should be animated on hide/show */
+  .hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0 !important; /* Override any existing margin-top */
+    margin-bottom: 0 !important; /* Override any existing margin-bottom */
+    padding-top: 0 !important; /* Override any existing padding-top */
+    padding-bottom: 0 !important; /* Override any existing padding-bottom */
+    transition: opacity 0.3s ease-out, max-height 0.3s ease-out, margin 0.3s ease-out, padding 0.3s ease-out;
+  }
+
+  /* For elements that should be completely removed from layout */
+  .visually-hidden {
+    display: none!important
+  }
 
 .asimovian-regular {
   font-family: "Asimovian", sans-serif;

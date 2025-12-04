@@ -1,4 +1,4 @@
-const e1 = "https://script.google.com/macros/s/AKfycby2PRJhIQPY2Rcmj6rLKnlqWt2GKNJ3I_fkzjHJf5d56z3aR1x9Wkap80IVbJ5BgmeE/exec";
+const e1 = "https://script.google.com/macros/s/AKfycby5KP-5FjBVHF_NES_VERVvhlvqBeKE8r52sASi3Rpg9ZSEQNJ4OGTIZE-10QHxzuse/exec";
 const e2 = "https://script.google.com/macros/s/AKfycbxmtq2y_FErE2igE9i-_4QzYzKpAlGexccN3uy19EGpskUsqgg6aM3J2HT0-FSUGRv2/exec";
 
 // 🔧 Send all values as JSON in text/plain
